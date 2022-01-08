@@ -1,7 +1,7 @@
 <?php
 include 'header.php';
 ?>
-<div class="container pt-3 bg-white">
+<div class="container p-3 bg-white rounded">
   <h1 class="text-center">Zanrovi</h1>
   <div class="row">
     <div class="col-7">
@@ -74,6 +74,7 @@ include 'header.php';
       iscrtaj();
     })
   }
+
   function iscrtaj() {
     const pretraga = $('#pretraga').val();
     const validni = zanrovi.filter(element => {
@@ -97,8 +98,11 @@ include 'header.php';
       ind++;
     }
   }
+
   function obrisiZanr(id) {
-    $.post('server/zanr-api/obrisi.php', { id }).then(res => {
+    $.post('server/zanr-api/obrisi.php', {
+      id
+    }).then(res => {
       res = JSON.parse(res);
       if (!res.success) {
         alert(res.greska);

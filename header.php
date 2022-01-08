@@ -19,7 +19,7 @@
     <div class="navbar-collapse collapse">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item mx-auto">
-          <a class="nav-link" href="index.php">KLubovi</a>
+          <a class="nav-link" href="index.php">Klubovi</a>
         </li>
         <li class="nav-item mx-auto">
           <a class="nav-link" href="zanrovi.php">Zanrovi pesama</a>

@@ -32,9 +32,8 @@ class KlubServis
 
   public function izmeni($id, $klub)
   {
-    $this->broker->upisi("update klub set naziv='" . $klub['naziv'] .
-      "',adresa='" . $klub['adresa'] . "',radno_vreme='" . $klub['radno_vreme'] .
-      "', rating=" . $klub['naziv'] . " where id=" . $id);
+    $this->broker->upisi("update klub set naziv='" . $klub['naziv'] . "',adresa='" . $klub['adresa'] . "',radno_vreme='" . $klub['radno_vreme'] .
+      "', rating=" . $klub['rating'] . " where id=" . $id);
   }
 
   public function obrisi($id)
