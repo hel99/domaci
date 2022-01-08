@@ -14,6 +14,16 @@ class KlubServis
     return $this->broker->ucitajVise("select * from klub");
   }
 
+  public function vratiJedan($id)
+  {
+    $klub = $this->broker->ucitajJedan("select * from klub where id=" . $id);
+    if (!isset($klub)) {
+      throw new Exception("Klub ne postoji");
+    }
+    $klub["zanrovi"] = $this->broker->ucitajVise("select z.* from klub_zanr kz inner join zanr z on (z.id = kz.zanr_id) where kz.klub_id=" . $id);
+    return $klub;
+  }
+
   public function kreiraj($klub)
   {
     $this->broker->upisi("insert into klub (naziv, adresa, radno_vreme, rating) values ('" .
@@ -41,4 +51,4 @@ class KlubServis
     $this->broker->upisi("delete from klub_zanr where klub_id=" . $klub . " and zanr_id=" . $zanr);
   }
 }
-$zanrServis = new ZanrServis(Broker::getInstance());
+$klubServis = new KlubServis(Broker::getInstance());
