@@ -31,4 +31,14 @@ class KlubServis
   {
     $this->broker->upisi("delete from klub where id=" . $id);
   }
+
+  public function dodajZanr($klub, $zanr)
+  {
+    $this->broker->upisi("insert into klub_zanr(klub_id,zanr_id) values(" . $klub . "," . $zanr . ")");
+  }
+  public function izbaciZanr($klub, $zanr)
+  {
+    $this->broker->upisi("delete from klub_zanr where klub_id=" . $klub . " and zanr_id=" . $zanr);
+  }
 }
+$zanrServis = new ZanrServis(Broker::getInstance());

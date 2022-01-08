@@ -4,10 +4,19 @@ class Broker
 {
 
   private $mysqli;
-  public function __construct($host, $username, $pass, $db, $port = 3306)
+  private static $broker;
+  private function __construct()
   {
-    $this->mysqli = new mysqli($host, $username, $pass, $db, $port);
+    $this->mysqli = new mysqli('localhost', 'root', 'root', 'klubovi');
     $this->mysqli->set_charset("utf8");
+  }
+
+  public static function getInstance()
+  {
+    if (!isset(Broker::$broker)) {
+      Broker::$broker = new Broker();
+    }
+    return Broker::$broker;
   }
 
   function ucitajVise($upit)
@@ -17,7 +26,7 @@ class Broker
       throw new Exception($this->mysqli->error);
     }
     $rez = [];
-    while ($red = $rezultat->fetch_object()) {
+    while ($red = $rezultat->fetch_assoc()) {
       $rez[] = $red;
     }
     return $rez;
@@ -29,7 +38,7 @@ class Broker
     if (!$rezultat) {
       throw new Exception($this->mysqli->error);
     }
-    return $rezultat->fetch_object();
+    return $rezultat->fetch_assoc();
   }
 
   function upisi($upit)
