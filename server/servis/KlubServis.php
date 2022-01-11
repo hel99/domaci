@@ -1,5 +1,5 @@
 <?php
-include '../db/Broker.php';
+require '../db/Broker.php';
 class KlubServis
 {
   private Broker $broker;

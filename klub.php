@@ -69,7 +69,10 @@ include 'header.php';
     $("#formaZanr").submit(e => {
       e.preventDefault();
       const zanr = $('#zanr').val();
-      $.post('server/klub-api/dodaj-zanr.php', { zanr, klub: $('#id').val() }).then(res => {
+      $.post('server/klub-api/dodaj-zanr.php', {
+        zanr,
+        klub: $('#id').val()
+      }).then(res => {
         res = JSON.parse(res);
         if (!res.success) {
           alert(res.greska);
@@ -113,7 +116,6 @@ include 'header.php';
     $('#zanr').html('');
     $('#zanrovi').html('');
     for (let zanr of zanrovi) {
-      console.log(klub.zanrovi.find(e => e.id == zanr.id) !== undefined)
       if (klub.zanrovi.find(e => e.id == zanr.id) !== undefined) {
         $("#zanrovi").append(`
           <tr>
@@ -130,6 +132,7 @@ include 'header.php';
       }
     }
   }
+
   function ucitajKlub() {
     $.getJSON('server/klub-api/vratiJedan.php?id=' + $('#id').val()).then(res => {
       if (!res.success) {
@@ -144,8 +147,12 @@ include 'header.php';
       popuniListuZanrova();
     })
   }
+
   function izbaciZanr(zanr) {
-    $.post('server/klub-api/izbaci-zanr.php', { zanr, klub: $('#id').val() }).then(res => {
+    $.post('server/klub-api/izbaci-zanr.php', {
+      zanr,
+      klub: $('#id').val()
+    }).then(res => {
       res = JSON.parse(res);
       if (!res.success) {
         alert(res.greska);

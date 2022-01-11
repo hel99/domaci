@@ -40,6 +40,7 @@ include 'header.php';
   let selIndex = -1;
   $(document).ready(() => {
     ucitajZanrove();
+    $('#pretraga').change(iscrtaj);
     $('#forma').submit(e => {
       e.preventDefault();
       let telo = {
